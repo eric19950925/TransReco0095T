@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="33dp"
+            tools:layout_editor_absoluteY="0dp">
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <WebView
+                android:id="@+id/wb_jp"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+
+                android:layout_below="@+id/tv_jp1"
+                android:layout_alignStart="@+id/tv_jp1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp">
+
+            </WebView>
+
+            <TextView
+                android:id="@+id/tv_tw1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="中文" />
+
+            <TextView
+                android:id="@+id/tv_en1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_below="@+id/tv_tw2"
+                android:layout_alignStart="@+id/tv_tw1"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                android:text="英文" />
+
+            <TextView
+                android:id="@+id/tv_jp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/wb_en"
+                android:layout_alignStart="@+id/tv_en1"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                android:text="日文" />
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="回主頁" />
+
+            <TextView
+                android:id="@+id/tv_tw2"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+
+                android:layout_below="@+id/tv_tw1"
+                android:layout_alignStart="@+id/tv_tw1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView" />
+
+            <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/wb_en"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/tv_en1"
+                android:layout_alignStart="@+id/tv_en1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp">
+
+            </WebView>
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/tv_tw2"
+                android:layout_alignBottom="@+id/tv_tw2"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toEndOf="@+id/wb_jp"
+                android:src="@drawable/icons8_edit_24" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
