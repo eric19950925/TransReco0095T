@@ -28,15 +28,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <WebView
-                android:id="@+id/wb_jp"
+            <TextView
+                android:id="@+id/tv_jp2"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
 
                 android:layout_below="@+id/tv_jp1"
                 android:layout_alignStart="@+id/tv_jp1"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textAppearance="@android:style/TextAppearance.Holo"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_en2"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+
+                android:layout_below="@+id/tv_en1"
+                android:layout_alignStart="@+id/tv_en1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textAppearance="@android:style/TextAppearance.Holo"
+                android:textSize="20sp" />
+
+            <WebView
+                android:id="@+id/wb_jp"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                >
 
             </WebView>
 
@@ -68,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@+id/wb_en"
+                android:layout_below="@+id/tv_en2"
                 android:layout_alignStart="@+id/tv_en1"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="8dp"
@@ -93,16 +116,15 @@
                 android:layout_alignStart="@+id/tv_tw1"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textAppearance="@android:style/TextAppearance.Holo"
+                android:textSize="20sp" />
 
             <WebView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/wb_en"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
-                android:layout_below="@+id/tv_en1"
-                android:layout_alignStart="@+id/tv_en1"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp">
+                android:visibility="gone">
 
             </WebView>
 
@@ -112,8 +134,9 @@
                 android:layout_height="40dp"
                 android:layout_alignTop="@+id/tv_tw2"
                 android:layout_alignBottom="@+id/tv_tw2"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginStart="334dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginBottom="31dp"
                 android:layout_toEndOf="@+id/wb_jp"
                 android:src="@drawable/icons8_edit_24" />
         </RelativeLayout>

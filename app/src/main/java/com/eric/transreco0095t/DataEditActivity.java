@@ -13,6 +13,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,13 +23,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 
 public class DataEditActivity extends AppCompatActivity  {
@@ -42,20 +44,21 @@ public class DataEditActivity extends AppCompatActivity  {
     private static final int REQUEST_CODE = 1234;
     private TextView tv_texten;
     private TextView tv_textjp;
-    private Request request;
-    private Call call;
-    private OkHttpClient okHttpClient;
-    private Response response1;
+
     private ImageView iv_deit;
     private RecoDataHelper helper;
     private Cursor cursor;
     private String file_name;
+    private String tw_en_text;
+    private String tw_jp_text;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_edit_activity);
         tv_text=findViewById(R.id.tv_tw2);
+        tv_texten=findViewById(R.id.tv_en2);
+        tv_textjp=findViewById(R.id.tv_jp2);
         btn_back=findViewById(R.id.btn_back);
         iv_deit = findViewById(R.id.edit);
         Intent intent = getIntent();
@@ -162,17 +165,39 @@ public class DataEditActivity extends AppCompatActivity  {
     }
 
     private void TransText(String s) throws Exception {
-            String url = "https://translate.google.com/m?hl=en&sl=zh-TW&tl=en&ie=UTF-8&prev=_m&q="+URLEncoder.encode(s, "UTF-8") ;
-            String url2 ="https://translate.google.com/m?hl=en&sl=zh-TW&tl=ja&ie=UTF-8&prev=_m&q="+URLEncoder.encode(s, "UTF-8") ;
+        String UTF8_tw = URLEncoder.encode(s, "UTF-8");
+            final String url = "https://translate.google.com/m?hl=en&sl=zh-TW&tl=en&ie=UTF-8&prev=_m&q="+UTF8_tw ;
+            final String url2 ="https://translate.google.com/m?hl=en&sl=zh-TW&tl=ja&ie=UTF-8&prev=_m&q="+UTF8_tw ;
 //            String url = "https://www.google.com.tw/";
 //            String url2 ="https://www.google.com.tw/";
 
-        WebView webview_en = (WebView) findViewById(R.id.wb_en);
+        Thread thread = new Thread(){
+            public void run(){
+
+                Document doc = null;
+                Document doc2 = null;
+                try {
+                    doc = Jsoup.connect(url).timeout(5000).get();
+                    doc2 = Jsoup.connect(url2).timeout(5000).get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Element tw_en = doc.select("div.t0").first();
+                Element tw_jp = doc2.select("div.t0").first();
+                tw_en_text = tw_en.text();
+                tw_jp_text = tw_jp.text();
+//                Log.d(TAG, "TransText: "+ tw_en_text);
+                tv_texten.setText(tw_en_text);
+                tv_textjp.setText(tw_jp_text);
+            }
+        };
+        thread.start();
+//        WebView webview_en = (WebView) findViewById(R.id.wb_en);
 //        WebSettings webSettings_en = webview_en.getSettings();
 //        webSettings_en.setJavaScriptEnabled(true);
 //        setContentView(webview_en);
 //        webview_en.setWebViewClient(new WebViewClient());
-        webview_en.loadUrl(url);
+//        webview_en.loadUrl(url);
 /*
         try {
             Document doc = Jsoup.connect(url).get();
@@ -189,12 +214,12 @@ public class DataEditActivity extends AppCompatActivity  {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        WebView webview_jp = (WebView) findViewById(R.id.wb_jp);
+//        WebView webview_jp = (WebView) findViewById(R.id.wb_jp);
 //        WebSettings webSettings_jp = webview_jp.getSettings();
 //        webSettings_jp.setJavaScriptEnabled(true);
 //        setContentView(webview_jp);
 //        webview_jp.setWebViewClient(new WebViewClient());
-        webview_jp.loadUrl(url2);
+//        webview_jp.loadUrl(url2);
     }
 /*
     private String parseResult(String inputJson) throws Exception{

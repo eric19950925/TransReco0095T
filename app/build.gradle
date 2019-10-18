@@ -32,5 +32,6 @@ dependencies {
     //okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     // jsoup HTML parser library @ https://jsoup.org/
-    implementation 'org.jsoup:jsoup:1.10.3'
+    implementation 'org.jsoup:jsoup:1.12.1'
+
 }
